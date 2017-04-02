@@ -1,0 +1,5 @@
+﻿<!-- Shows an alert based on the type of notification type, success will show an alert-success box and an error will show
+  a alert-danager box -->
+<div *ngIf="message" [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">
+    {{message.text}}
+</div>

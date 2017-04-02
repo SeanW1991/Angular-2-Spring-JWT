@@ -1,0 +1,16 @@
+server.port: 8080
+spring.profiles: default
+jwt_config:
+  expiration: 30
+  refreshExpiration: 60
+  owner: http://example.com
+  signatureKey: [code]
+
+spring.datasource:
+  url: "jdbc:h2:mem:example"
+  driverClassName: org.h2.Driver
+  username: root
+  password: ""
+  data: "classpath*:data.sql"
+spring.jpa:
+  database-platform: org.hibernate.dialect.H2Dialect

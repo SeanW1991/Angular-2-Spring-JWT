@@ -1,0 +1,5 @@
+<h1>User Details</h1>
+
+<p *ngIf="profile == null && !errorMessage">Loading information...........</p>
+<p *ngIf="profile != null">Username:  {{getUsername()}}</p>
+<p *ngIf="!!errorMessage">ERROR: {{errorMessage}}</p>

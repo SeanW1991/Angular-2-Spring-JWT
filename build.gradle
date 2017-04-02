@@ -1,0 +1,81 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.2.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+	}
+}
+
+plugins {
+	id "com.moowork.node" version "0.12"
+	id "com.moowork.gulp" version "0.12"
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot' 
+
+jar {
+	baseName = 'spring-boot-angular2-starter'
+	version = '1.0'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-web
+	compile 'io.jsonwebtoken:jjwt:0.6.0'
+
+	compile("org.springframework.boot:spring-boot-devtools")
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.5'
+	compile group: 'joda-time', name: 'joda-time', version: '2.9.9'
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-data-rest')
+	compile('org.springframework.boot:spring-boot-starter-security')
+	compile group: 'org.springframework.mobile', name: 'spring-mobile-device', version: '1.1.5.RELEASE'
+	compile('com.h2database:h2')
+	compile group: 'com.google.guava', name: 'guava', version: '21.0'
+}
+
+eclipse {
+	classpath {
+		 containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+		 containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+	}
+}
+
+// If you haven't installed node globally
+node {
+	version = '5.9.1'
+	npmVersion = '3.8.2'
+	download = true
+	workDir = file("${project.projectDir}/")
+	nodeModulesDir = file("${project.projectDir}/")
+}
+
+gulp {
+	workDir = file("${project.projectDir}")
+	colors = true
+	bufferOutput = false
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.9'
+}
+
+bootRun {
+	addResources = true
+}
+
+task stage {
+	dependsOn build
+}

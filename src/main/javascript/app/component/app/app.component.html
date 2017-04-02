@@ -1,0 +1,39 @@
+<!--
+The navigation bar.
+
+Login and Logout buttons are handled based on if the user
+is signed in or not.
+
+-->
+<nav role = "navigation" class="navbar navbar-dark bg-inverse">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" routerLink="dashboard">Angular 2 Jwt Example</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="nav-item" routerLinkActive="active" routerLinkActiveOptions="{exact:true}">
+                    <a class="nav-link" routerLink="dashboard">Home</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active" routerLinkActiveOptions="{exact:true}">
+                    <a class="nav-link" routerLink="profile">Profile</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active" routerLinkActiveOptions="{exact:true}">
+                    <a class="nav-link" routerLink="404">NotFound</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item">
+                    <a *ngIf="!isSignedIn()" class="nav-link" routerLink="login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a *ngIf="isSignedIn()" class="nav-link" (click)="logout()">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</nav>
+<router-outlet></router-outlet>
+
+
+
